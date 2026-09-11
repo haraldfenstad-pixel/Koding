@@ -1,0 +1,115 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikker Innlogging</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745; /* Grønn knapp for å indikere suksess/videre-handling */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #error-message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Logg inn</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Brukernavn</label>
+                <input type="text" id="username" required placeholder="Skriv brukernavn">
+            </div>
+            <div class="input-group">
+                <label for="password">Passord</label>
+                <input type="password" id="password" required placeholder="Skriv passord">
+            </div>
+            <button type="submit">Logg inn og fortsett</button>
+        </form>
+        <div id="error-message"></div>
+    </div>
+
+    <script>
+        // --- ADRESSE, BRUKERNAVN OG PASSORD ---
+        const NESTE_SIDE_URL = "https://wikipedia.no" // Endre denne til siden du vil åpne!
+        const RIKTIG_BRUKERNAVN = "minBruker";
+        const RIKTIG_PASSORD = "hemmelig123";
+        // --------------------------------------
+
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('error-message');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Hindrer siden i å laste på nytt
+
+            const inntastetBruker = document.getElementById('username').value;
+            const inntastetPassord = document.getElementById('password').value;
+
+            // Sjekker om legitimasjonen stemmer
+            if (inntastetBruker === RIKTIG_BRUKERNAVN && inntastetPassord === RIKTIG_PASSORD) {
+                
+                // Videresender brukeren til den nye siden i samme fane
+                window.location.href = NESTE_SIDE_URL; 
+                
+            } else {
+                errorMessage.textContent = "Feil brukernavn eller passord. Prøv igjen.";
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
