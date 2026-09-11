@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Skrivemaskin-effekt</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 40px;
+        }
+
+        /* Denne klassen brukes på teksten du vil animere */
+        .auto-type {
+            visibility: hidden; /* Skjuler teksten før animasjonen starter */
+        }
+
+        /* Stil for den blinkende markøren */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #ff0000; /* Grønn terminal-markør */
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { background-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Her skriver du teksten helt fritt i HTML-dokumentet -->
+    <h1 class="auto-type">Dette er en test.</h1>
+     <h1 class="auto-type"> Prøver å bruke det jeg har lært i mars og prøver også å lære meg noe nytt</h1>  
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Finn alle elementer som har klassen "auto-type"
+            const elements = document.querySelectorAll('.auto-type');
+
+            elements.forEach((element) => {
+                // 2. Ta vare på den originale teksten som står i HTML-en
+                const originalText = element.textContent.trim();
+                
+                // 3. Tøm elementet og gjør det synlig igjen
+                element.textContent = '';
+                element.style.visibility = 'visible';
+
+                // 4. Lag en markør-effekt bak teksten
+                const cursor = document.createElement('span');
+                cursor.classList.add('cursor');
+                cursor.innerHTML = '&nbsp;';
+                element.parentNode.insertBefore(cursor, element.nextSibling);
+
+                let index = 0;
+                const speed = 50; // Fart per bokstav i millisekunder (lavere tall = raskere)
+
+                // 5. Funksjon som skriver ut én og én bokstav
+                function type() {
+                    if (index < originalText.length) {
+                        element.textContent += originalText.charAt(index);
+                        index++;
+                        setTimeout(type, speed);
+                    } else {
+                        // Fjern blinkende markør når teksten er ferdig skrevet (valgfritt)
+                        // cursor.remove(); 
+                    }
+                }
+
+                // Start animasjonen for dette elementet
+                type();
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+    </style>
+
+    
+
+
+<head></head>
+</body>
+</html>
