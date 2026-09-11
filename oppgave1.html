@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas mal</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+    <script> 
+    
+   
+
+
+
+
+
+        
+        const c = document.getElementById('canvas');
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = "green";
+ctx.fillRect(200, 200, 200, 200);
+        
+ctx.fillStyle = "red";
+ctx.fillRect(100, 100, 100, 100);
+
+ctx.fillStyle = "blue";
+ctx.fillRect(450, 120, 120, 250);
+
+ctx.fillStyle = "orange";
+ctx.beginPath();
+ctx.arc(400, 300, 50, 0, Math.PI * 2);
+ctx.fill();
+
+function drawFace(x, y) {
+    ctx.fillStyle = "yellow";
+    ctx.beginPath();
+    ctx.arc(x, y, 50, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(x - 20, y -10, 8, 0, Math.PI * 2);
+    ctx.arc(x + 20, y -10, 8, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+drawFace(200, 200);
+drawFace(400, 300);
+drawFace(600, 180);
+
+    </script>
+</body>
+</html>

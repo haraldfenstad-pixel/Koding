@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+canvas { border:1px solid black }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="600"></canvas>
+
+<script>
+const c = document.getElementById("canvas")
+const ctx = c.getContext("2d")
+
+let x = 200
+let y = 100
+let vy = 0
+let gravity = 0.2
+let pipeX = 650
+let gameOver = false
+
+
+
+
+function gameLoop(){
+
+    ctx.clearRect(0,0,c.width,c.height)
+
+    vy += gravity
+    y += vy
+
+    ctx.fillRect(pipeX,0,80,220)
+    ctx.fillRect(pipeX,430,80,170)
+    
+    pipeX -=2
+
+    if(pipeX < -80){
+    pipeX = c.width
+    }
+
+    ctx.fillRect(x,y,40,40)
+
+    const hitsPipe = x < pipeX + 80 && x + 40 > pipeX &&
+        (y < 220 || y + 40 > 430)
+
+    if(hitsPipe){
+    gameOver = true
+    }
+
+    if(gameOver){
+    ctx.font = "32px sans-serif"
+    ctx.fillText("Game Over", 300, 300)
+    return
+    }
+
+  
+
+    if(y > c.height - 40){
+    y = c.height - 40
+    vy = -vy * 0.8
+}
+
+    if(y < 0){
+    y = 0
+    vy = 0
+    }
+
+
+
+    requestAnimationFrame(gameLoop)
+}
+
+gameLoop()
+
+document.addEventListener("keydown", handleKeyDown)
+
+function handleKeyDown(e){
+    if(e.code === "Space"){
+        vy = -6
+    }
+} 
+
+
+
+</script>
+</body>
+</html>

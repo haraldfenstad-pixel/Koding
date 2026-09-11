@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas mal</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+    <script>
+        const c = document.getElementById('canvas');
+        const ctx = c.getContext('2d');
+
+        const sprite = new Image();
+        sprite.src = '8874_original.webp';
+
+        let x1 = 100;
+        let x2 = 300;
+        let speed1 = 3;
+        let speed2 = 5;
+        const spriteSize = 80;
+
+        function loop() {
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        function update() {
+            x1 += speed1;
+            x2 += speed2;
+
+            if (x1 <= 0 || x1 + spriteSize >= c.width) {
+                speed1 *= -1;
+            }
+
+            if (x2 <= 0 || x2 + spriteSize >= c.width) {
+                speed2 *= -1;
+            }
+        }
+
+        const background = new Image();
+        background.src = 'Street.jpg';
+
+        function drawBackground() {
+            ctx.drawImage(background, 0, 0, c.width, c.height);
+        }
+
+        function draw() {
+            drawBackground();
+            ctx.drawImage(sprite, x1, 200, spriteSize, spriteSize);
+            ctx.drawImage(sprite, x2, 300, spriteSize, spriteSize);
+        }
+
+        background.onload = () => {
+            sprite.onload = () => {
+                loop();
+            };
+        };
+    
+
+
+    
+   
+
+
+
+
+
+    </script>
+</body>
+</html>
