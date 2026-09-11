@@ -1,0 +1,73 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Webpage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+
+        /* This visually highlights the areas you can edit when you hover over them */
+        [contenteditable="true"] {
+            padding: 5px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: #f5f5f5;
+            border-color: #ccc;
+            cursor: pointer;
+        }
+
+        /* Highlights the field actively being edited */
+        [contenteditable="true"]:focus {
+            background-color: #fff;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        h1 {
+            color: #111;
+        }
+
+        .hint {
+            font-size: 0.9rem;
+            color: #666;
+            background: #eef2f7;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hint">
+        <strong>How to use:</strong> Click on any of the text below to change it. You can type, delete, or rewrite whatever you want!
+    </div>
+
+    <!-- Any element with contenteditable="true" can be edited by the user -->
+    <h1 contenteditable="true">Click here to edit this title</h1>
+    
+    <p contenteditable="true">
+        This is a paragraph that you can completely rewrite. Go ahead and click here to try it out. You can even use standard keyboard shortcuts like Ctrl+B (or Cmd+B) to make text bold while you type.
+    </p>
+
+    <h2 contenteditable="true">Another Editable Heading</h2>
+
+    <p contenteditable="true">
+        Each section is independent, so you can structure your text exactly how you want it. Note that refreshing the page will reset the text to its original state unless you save your changes.
+    </p>
+
+</body>
+</html>
